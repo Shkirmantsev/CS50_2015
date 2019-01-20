@@ -1,0 +1,16 @@
+if (n==0) return false;
+    if (n=1)
+    {
+        if value==Values[0] return true;
+        else retun false;
+    }
+    if (n==2)
+    {
+        if value>Values[0]
+        {
+            if (value==Values[(n-1)]) return true;
+            else return false;
+        }
+        else if value==Values[0] return true;
+        else return false;
+    }

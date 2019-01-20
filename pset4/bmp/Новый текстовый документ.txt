@@ -1,0 +1,5 @@
+check50 2014.fall.pset4.resize bmp.h resize.c
+~cs50/pset4/peek large.bmp
+./resize 4 small.bmp student.bmp
+~cs50/pset4/resize 4 small.bmp staff.bmp
+~cs50/pset4/peek student.bmp staff.bmp

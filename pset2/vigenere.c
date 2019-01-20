@@ -1,0 +1,144 @@
+#include <cs50.h>
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+void text_caesar_function(int key, char textName); // prototipe
+void letter_function(int key,char letter); // prototipe
+
+int main(int argc, string argv[])
+{
+    if (argc !=2)
+    {
+        printf("enter only one key!");
+        return 1;
+    }
+    else 
+    {   
+        //check fore the letter in key
+        
+        int keyword_len=strlen(argv[1]);
+        string keyword=argv[1];
+        
+        int marker=1;
+        
+        for (int k=0;k<keyword_len;k++)
+        {
+            bool marker_check=isalpha(keyword[k]);
+            if (marker_check !=true)
+            {
+                marker=0; //END of the checking fore the letter in key
+            }
+        }     
+        
+        if (marker==0)
+        {
+            printf("entered key must be letter, must be not number\n");
+            return 1;
+        }
+        else
+        {
+            // make keword's numeric keys
+            int key_w[keyword_len];
+            for (int i=0 ;i<keyword_len;i++)
+            {
+                bool flag1=isupper(keyword[i]);
+                if (flag1==true)
+                {
+                    key_w[i]=(keyword[i]-65) ;
+                }
+                else
+                {
+                    key_w[i]=(keyword[i]-97) ;
+                }                
+            
+            //printf("keword's numeric keys is: %i\n",key_w[i] );    
+            
+            }
+            // get text for coding
+            string text1=GetString();
+            
+            // make numeric key string and superposition data
+            int k=strlen(text1);
+            int key[k];
+            for (int i=0,j=0, t=0;i<k;i++)
+            {
+                bool flag=isalpha(text1[i]);
+                if (flag==true)
+                {
+                    t=j%keyword_len;
+                    
+                    key[i]=key_w[t];
+                    
+                    //printf("[i]= %i, [j]= %i,key[i]= %i, keyword_len=%i   \n", i, j, key[i], keyword_len);
+                    
+                    j++;
+                }
+                else
+                {
+                    key[i]=0;
+                }
+                char textname;
+                textname=text1[i];
+                text_caesar_function(key[i],textname);
+            }
+            printf("\n"); 
+                
+            
+        }
+        
+    } 
+    
+}
+// Functions:
+
+// function of printing only letter simbols
+void letter_function(int key,char letter)
+{
+    bool marker3=isupper(letter);
+    bool marker4=islower(letter);
+    int key2=key%26;
+    int numletter=(letter);
+    //big letter
+    
+    if (marker3==true)
+    {
+        if ((numletter+key2) > 90)
+        {
+            printf("%c", (numletter+key2-26));
+        }
+        else
+        {
+            printf("%c", (numletter+key2));
+        }  
+    }
+    else if(marker4==true)
+    {
+        if ((numletter+key2) > 122)
+        {
+            printf("%c",(numletter+key2-26));
+        }
+        else
+        {
+            printf("%c", (numletter+key2));
+        }  
+    }
+}
+// function of printing all simbols
+void text_caesar_function(int key, char textName)
+{
+        char letter=textName;
+        // printing coding letter, checking simbols
+        
+        bool marker2=isalpha(textName);
+        
+        if (marker2 == true) // variant letter
+        {
+            letter_function(key,letter);      
+        }
+        else // variant simbol
+        {
+            printf("%c", letter);
+        }
+    
+}

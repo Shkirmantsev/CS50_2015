@@ -1,0 +1,5 @@
+printf("This program draws a red rectangle at (0, 0).\n")
+      GRect rect = newGRect(0, 0, 200, 100);
+      setFilled(rect, true);
+      setColor(rect, "RED");
+      add(gw, rect);
